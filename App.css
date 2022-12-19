@@ -1,0 +1,191 @@
+@font-face {
+  font-family: DINCondensed;
+  src: url(/src/assets/fonts/DINCondensed.ttf);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  background-color: #1C77A3FF;
+  text-align: center;
+}
+
+.app-container>.loading-screen {
+  display: block;
+}
+
+.app-container>.main-game-content {
+  display: none;
+}
+
+.app-container>div:not(.loading-screen) {
+  display: block;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1C77A3FF;
+}
+
+.loading-image {
+  margin-top: 2rem;
+  width: 1000px;
+  height: auto;
+}
+
+.loading-header,
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.logo {
+  width: 250px;
+  filter: invert(100%);
+}
+
+.main-game-content {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: DINCondensed, Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 120px;
+  margin-bottom: 0;
+  letter-spacing: -6px;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 100%;
+  font-weight: 100;
+  letter-spacing: -1px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+}
+
+h3 {
+  font-family: DINCondensed, Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 40px;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(80px, 1fr));
+  gap: 10px;
+  padding: 0;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  cursor: pointer;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card img {
+  width: 220px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal p {
+  font-family: DINCondensed, Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 300;
+  letter-spacing: -1px;
+  font-size: 100px;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+}
+
+.modal button {
+  border: none;
+  background: #1C77A3FF;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 50px;
+  letter-spacing: -1px;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal button:hover {
+  background: #ffffff;
+  color: #1C77A3FF;
+  transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
