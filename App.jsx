@@ -89,6 +89,10 @@ useEffect(() => {
             Try to select all movies without repeating any!
           </h2>
   
+          <div className="difficulty-indicator">
+            <span>Difficulty: {Object.keys(customImages).length} cards</span>
+          </div>
+  
           <Scoreboard score={score} bestScore={bestScore} />
           <CardGrid cards={cards} handleCardClick={handleCardClick} />
           {modalMessage && (
