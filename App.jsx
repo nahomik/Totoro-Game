@@ -44,6 +44,22 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, []);
 
+useEffect(() => {
+  if (!loading && score > 0) {
+    const timer = setInterval(() => {
+      setGameTime(prev => prev + 1);
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }
+}, [loading, score]);
+
+useEffect(() => {
+  if (score === 0) {
+    setGameTime(0);
+  }
+}, [score]);
+
   function shuffleArray(array) {
     return [...array].sort(() => Math.random() - 0.5);
   }
