@@ -1,3 +1,6 @@
+// App.jsx - Main application component for AuthenChain
+// Handles game logic, state management, and UI composition
+
 import { useState, useEffect } from "react";
 import "./App.css";
 import CardGrid from "./components/CardGrid";
@@ -6,6 +9,7 @@ import Modal from "./components/Modal";
 import logo from "../src/assets/ghibli-films/ghibli.svg";
 import loadingImage from "../src/assets/ghibli-films/studio-ghibli.gif";
 import customImages from "./components/CustomImages";
+import shuffleArray from "./src/utils/shuffleArray";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -59,10 +63,6 @@ useEffect(() => {
     setGameTime(0);
   }
 }, [score]);
-
-  function shuffleArray(array) {
-    return [...array].sort(() => Math.random() - 0.5);
-  }
 
   function handleCardClick(id) {
     if (selectedCards.includes(id)) {
