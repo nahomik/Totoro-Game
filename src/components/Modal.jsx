@@ -3,7 +3,12 @@ const Modal = ({ message, onClose }) => {
     <div className="modal-overlay">
       <div className="modal">
         <p>{message}</p>
-        <button onClick={onClose}>Play Again</button>
+        <button 
+          onClick={onClose}
+          onKeyDown={e => {
+            if (e.key === 'Enter') onClose();
+          }}
+        >Play Again</button>
       </div>
     </div>
   );
