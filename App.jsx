@@ -10,6 +10,7 @@ import logo from "../src/assets/ghibli-films/ghibli.svg";
 import loadingImage from "../src/assets/ghibli-films/studio-ghibli.gif";
 import customImages from "./components/CustomImages";
 import shuffleArray from "./src/utils/shuffleArray";
+import formatTime from "./src/utils/formatTime";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -121,6 +122,7 @@ useEffect(() => {
           </div>
   
           <Scoreboard score={score} bestScore={bestScore} />
+          <div className="game-time">Time: {formatTime(gameTime)}</div>
           <CardGrid cards={cards} handleCardClick={handleCardClick} />
           {modalMessage && (
             <Modal message={modalMessage} onClose={() => setModalMessage("")} />
