@@ -11,6 +11,7 @@ import loadingImage from "../src/assets/ghibli-films/studio-ghibli.gif";
 import customImages from "./components/CustomImages";
 import shuffleArray from "./src/utils/shuffleArray";
 import formatTime from "./src/utils/formatTime";
+import useGameTimer from "./src/hooks/useGameTimer";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -19,51 +20,41 @@ function App() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [modalMessage, setModalMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const [gameTime, setGameTime] = useState(0);
+  const [gameTime, setGameTime] = useGameTimer(!loading && score > 0);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setLoading(false);
-  }, 2000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-  fetch("https://ghibliapi.vercel.app/films")
-    .then((response) => response.json())
-    .then((data) => {
-      const selectedFilmIDs = Object.keys(customImages);
+    fetch("https://ghibliapi.vercel.app/films")
+      .then((response) => response.json())
+      .then((data) => {
+        const selectedFilmIDs = Object.keys(customImages);
 
-      const filteredFilms = data
-        .filter((film) => selectedFilmIDs.includes(film.id))
-        .map((film) => ({
-          id: film.id,
-          title: film.title,
-          image:
-            customImages[film.id] ||
-            film.movie_banner ||
-            "https://via.placeholder.com/300",
-        }));
+        const filteredFilms = data
+          .filter((film) => selectedFilmIDs.includes(film.id))
+          .map((film) => ({
+            id: film.id,
+            title: film.title,
+            image:
+              customImages[film.id] ||
+              film.movie_banner ||
+              "https://via.placeholder.com/300",
+          }));
 
-      setCards(shuffleArray([...new Set(filteredFilms)]));
-    })
-    .catch((error) => console.error("Error fetching data:", error));
+        setCards(shuffleArray([...new Set(filteredFilms)]));
+      })
+      .catch((error) => console.error("Error fetching data:", error));
 
-  return () => clearTimeout(timer);
-}, []);
+    return () => clearTimeout(timer);
+  }, []);
 
-useEffect(() => {
-  if (!loading && score > 0) {
-    const timer = setInterval(() => {
-      setGameTime(prev => prev + 1);
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }
-}, [loading, score]);
-
-useEffect(() => {
-  if (score === 0) {
-    setGameTime(0);
-  }
-}, [score]);
+  useEffect(() => {
+    if (score === 0) {
+      setGameTime(0);
+    }
+  }, [score, setGameTime]);
 
   function handleCardClick(id) {
     if (selectedCards.includes(id)) {
