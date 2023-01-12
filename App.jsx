@@ -41,7 +41,7 @@ function App() {
             image:
               customImages[film.id] ||
               film.movie_banner ||
-              "https://via.placeholder.com/300",
+              "https://images.pexels.com/photos/8828585/pexels-photo-8828585.jpeg",
           }));
 
         setCards(shuffleArray([...new Set(filteredFilms)]));
