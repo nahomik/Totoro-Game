@@ -12,6 +12,7 @@ import customImages from "./components/CustomImages";
 import shuffleArray from "./src/utils/shuffleArray";
 import formatTime from "./src/utils/formatTime";
 import useGameTimer from "./src/hooks/useGameTimer";
+import { GHIBLI_API_URL } from "./src/constants/api";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -27,7 +28,7 @@ function App() {
       setLoading(false);
     }, 2000);
 
-    fetch("https://ghibliapi.vercel.app/films")
+    fetch(GHIBLI_API_URL)
       .then((response) => response.json())
       .then((data) => {
         const selectedFilmIDs = Object.keys(customImages);
