@@ -112,7 +112,7 @@ function App() {
             <span className="progress-text">{score}/{Object.keys(customImages).length}</span>
           </div>
   
-          <Scoreboard score={score} bestScore={bestScore} />
+          <Scoreboard score={score} bestScore={bestScore} gameTime={formatTime(gameTime)} />
           <div className="game-time">Time: {formatTime(gameTime)}</div>
           <CardGrid cards={cards} handleCardClick={handleCardClick} />
           {modalMessage && (
