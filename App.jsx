@@ -9,7 +9,7 @@ import Modal from "./components/Modal";
 import logo from "../src/assets/ghibli-films/ghibli.svg";
 import loadingImage from "../src/assets/ghibli-films/studio-ghibli.gif";
 import customImages from "./components/CustomImages";
-import shuffleArray from "./src/utils/shuffleArray";
+import shuffleArray from "./utils/shuffleArray";
 import formatTime from "./src/utils/formatTime";
 import useGameTimer from "./src/hooks/useGameTimer";
 import { GHIBLI_API_URL } from "./src/constants/api";
