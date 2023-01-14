@@ -1,9 +1,9 @@
 import Card from "./card";
 
-const CardGrid = ({ cards, handleCardClick }) => {
+const CardGrid = ({ cards = [], handleCardClick }) => {
   return (
     <div className="grid">
-      {cards.map(card => (
+      {Array.isArray(cards) && cards.map(card => (
         <Card key={card.id} card={card} handleCardClick={handleCardClick} />
       ))}
     </div>
