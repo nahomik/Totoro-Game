@@ -3,8 +3,8 @@
 
 import { useState, useEffect } from "react";
 import "./App.css";
-import logo from "./assets/ghibli-films/ghibli.svg";
-import loadingImage from "./assets/ghibli-films/studio-ghibli.gif";
+import logo from "https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg";
+import loadingImage from "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
 import CardGrid from "./components/CardGrid";
 import Scoreboard from "./components/Scoreboard";
 import Modal from "./components/Modal";
