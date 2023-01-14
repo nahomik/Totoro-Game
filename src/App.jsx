@@ -3,11 +3,11 @@
 
 import { useState, useEffect } from "react";
 import "./App.css";
+import logo from "./assets/ghibli-films/ghibli.svg";
+import loadingImage from "./assets/ghibli-films/studio-ghibli.gif";
 import CardGrid from "./components/CardGrid";
 import Scoreboard from "./components/Scoreboard";
 import Modal from "./components/Modal";
-import logo from "./assets/ghibli-films/ghibli.svg";
-import loadingImage from "./assets/ghibli-films/studio-ghibli.gif";
 import customImages from "./components/CustomImages";
 import shuffleArray from "./utils/shuffleArray";
 import formatTime from "./utils/formatTime";
