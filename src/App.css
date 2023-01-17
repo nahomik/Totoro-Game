@@ -1,1 +1,12 @@
 /* ...existing code... */
+.error-message {
+  color: #fff;
+  background: #d32f2f;
+  padding: 10px;
+  margin: 20px auto;
+  border-radius: 5px;
+  max-width: 400px;
+  text-align: center;
+  font-weight: bold;
+}
+/* ...existing code... */
