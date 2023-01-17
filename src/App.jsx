@@ -13,58 +13,67 @@ import useGameTimer from "./hooks/useGameTimer";
 import { GHIBLI_API_URL } from "./constants/api";
 
 function App() {
-  const [gameState, setGameState] = useState({
-    // ...existing state...
-  });
-
-  const [timer, startTimer, stopTimer, resetTimer] = useGameTimer(60);
+  const [cards, setCards] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [modalMessage, setModalMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [gameTime, setGameTime] = useGameTimer(!loading && score > 0);
 
   useEffect(() => {
-    // ...existing code...
+    setLoading(true);
+    fetch(GHIBLI_API_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        const selectedFilmIDs = Object.keys(customImages);
+        const filteredFilms = data
+          .filter((film) => selectedFilmIDs.includes(film.id))
+          .map((film) => ({
+            id: film.id,
+            title: film.title,
+            image: customImages[film.id],
+          }));
+        setCards(shuffleArray(filteredFilms));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
-  const handleCardClick = (id) => {
-    // ...existing code...
-  };
-
-  const handleModalClose = () => {
-    // ...existing code...
-  };
-
-  const handlePlayAgain = () => {
-    // ...existing code...
-  };
-
-  const logoUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg";
-  const loadingImageUrl = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
+  function handleCardClick(id) {
+    if (selectedCards.includes(id)) {
+      setModalMessage("Game Over! Try Again.");
+      setScore(0);
+      setSelectedCards([]);
+    } else {
+      const newScore = score + 1;
+      setScore(newScore);
+      setBestScore(Math.max(newScore, bestScore));
+      setSelectedCards([...selectedCards, id]);
+      if (newScore === cards.length) {
+        setModalMessage("You Won!");
+      }
+    }
+    setCards(shuffleArray(cards));
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logoUrl} alt="Ghibli Logo" className="App-logo" />
+    <div className="app-container">
+      <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg" alt="Ghibli Logo" className="logo" />
         <h1>AuthenChain Memory Game</h1>
       </header>
-      <main>
-        {gameState.isLoading ? (
-          <img src={loadingImageUrl} alt="Loading..." className="Loading-image" />
-        ) : (
-          <>
-            <Scoreboard score={gameState.score} highScore={gameState.highScore} />
-            <CardGrid
-              cards={gameState.cards}
-              onCardClick={handleCardClick}
-              customImages={customImages}
-            />
-          </>
-        )}
-      </main>
-      <Modal
-        isOpen={gameState.isModalOpen}
-        onClose={handleModalClose}
-        onPlayAgain={handlePlayAgain}
-        score={gameState.score}
-        highScore={gameState.highScore}
-      />
+      {loading ? (
+        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..." className="loading-image" />
+      ) : (
+        <>
+          <Scoreboard score={score} bestScore={bestScore} />
+          <CardGrid cards={cards} handleCardClick={handleCardClick} />
+          {modalMessage && (
+            <Modal message={modalMessage} onClose={() => setModalMessage("")} />
+          )}
+        </>
+      )}
     </div>
   );
 }
