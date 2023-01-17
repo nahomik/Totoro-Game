@@ -19,6 +19,7 @@ function App() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [modalMessage, setModalMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [gameTime, setGameTime] = useGameTimer(!loading && score > 0);
 
   useEffect(() => {
@@ -36,8 +37,12 @@ function App() {
           }));
         setCards(shuffleArray(filteredFilms));
         setLoading(false);
+        setError("");
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setLoading(false);
+        setError("Failed to load films. Please try again later.");
+      });
   }, []);
 
   function handleCardClick(id) {
@@ -63,6 +68,7 @@ function App() {
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg" alt="Ghibli Logo" className="logo" />
         <h1>AuthenChain Memory Game</h1>
       </header>
+      {error && <div className="error-message">{error}</div>}
       {loading ? (
         <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..." className="loading-image" />
       ) : (
