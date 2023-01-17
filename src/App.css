@@ -24,4 +24,11 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.cards-remaining {
+  font-size: 1.1rem;
+  color: #1976d2;
+  margin: 10px 0 20px 0;
+  font-weight: 500;
+}
 /* ...existing code... */
