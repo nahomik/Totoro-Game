@@ -70,7 +70,10 @@ function App() {
       </header>
       {error && <div className="error-message">{error}</div>}
       {loading ? (
-        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..." className="loading-image" />
+        <div>
+          <div className="spinner"></div>
+          <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading..." className="loading-image" />
+        </div>
       ) : (
         <>
           <Scoreboard score={score} bestScore={bestScore} />
