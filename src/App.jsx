@@ -78,6 +78,11 @@ function App() {
         <>
           <Scoreboard score={score} bestScore={bestScore} />
           <CardGrid cards={cards} handleCardClick={handleCardClick} />
+          {!loading && (
+            <div className="cards-remaining">
+              Cards remaining: {cards.length - score}
+            </div>
+          )}
           {modalMessage && (
             <Modal message={modalMessage} onClose={() => setModalMessage("")} />
           )}
