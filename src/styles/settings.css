@@ -1,0 +1,9 @@
+.settings-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #e3f2fd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  color: #333;
+}

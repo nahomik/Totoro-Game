@@ -18,6 +18,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [selectedCards, setSelectedCards] = useState([]);
+  const [difficulty, setDifficulty] = useState(12);
   const modal = useModal();
   const [modalMessage, setModalMessage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -37,7 +38,7 @@ function App() {
             title: film.title,
             image: customImages[film.id],
           }));
-        setCards(shuffleArray(filteredFilms));
+        setCards(shuffleArray(filteredFilms).slice(0, difficulty));
         setLoading(false);
         setError("");
       })
@@ -45,7 +46,7 @@ function App() {
         setLoading(false);
         setError("Failed to load films. Please try again later.");
       });
-  }, []);
+  }, [difficulty]);
 
   function handleCardClick(id) {
     if (selectedCards.includes(id)) {
@@ -79,6 +80,18 @@ function App() {
       <header>
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg" alt="Ghibli Logo" className="logo" />
         <h1>Ghibli Memory Game</h1>
+        <div className="difficulty-selector">
+          <label htmlFor="difficulty">Difficulty: </label>
+          <select
+            id="difficulty"
+            value={difficulty}
+            onChange={e => setDifficulty(Number(e.target.value))}
+          >
+            <option value={6}>Easy (6 cards)</option>
+            <option value={12}>Medium (12 cards)</option>
+            <option value={18}>Hard (18 cards)</option>
+          </select>
+        </div>
       </header>
       {error && <div className="error-message">{error}</div>}
       {loading ? (
