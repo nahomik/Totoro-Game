@@ -73,7 +73,7 @@ function App() {
     <div className="app-container">
       <header>
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg" alt="Ghibli Logo" className="logo" />
-        <h1>AuthenChain Memory Game</h1>
+        <h1>Ghibli Memory Game</h1>
       </header>
       {error && <div className="error-message">{error}</div>}
       {loading ? (
