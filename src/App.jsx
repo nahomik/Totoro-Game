@@ -62,6 +62,13 @@ function App() {
     setCards(shuffleArray(cards));
   }
 
+  function handleModalClose() {
+    setModalMessage("");
+    setScore(0);
+    setSelectedCards([]);
+    setGameTime(0); // Reset game time
+  }
+
   return (
     <div className="app-container">
       <header>
@@ -84,7 +91,7 @@ function App() {
             </div>
           )}
           {modalMessage && (
-            <Modal message={modalMessage} onClose={() => setModalMessage("")} />
+            <Modal message={modalMessage} onClose={handleModalClose} />
           )}
         </>
       )}
