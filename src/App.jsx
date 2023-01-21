@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import CardGrid from "./components/CardGrid";
 import Scoreboard from "./components/Scoreboard";
+import Leaderboard from "./components/Leaderboard";
 import Modal from "./components/Modal";
 import customImages from "./components/CustomImages";
 import shuffleArray from "./utils/shuffleArray";
@@ -79,7 +80,7 @@ function App() {
     <div className="app-container">
       <header>
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg" alt="Ghibli Logo" className="logo" />
-        <h1>Ghibli Memory Game</h1>
+        <h1>Totoro Memory Game</h1>
         <div className="difficulty-selector">
           <label htmlFor="difficulty">Difficulty: </label>
           <select
@@ -102,6 +103,7 @@ function App() {
       ) : (
         <>
           <Scoreboard score={score} bestScore={bestScore} />
+          <Leaderboard score={score} bestScore={bestScore} />
           <CardGrid cards={cards} handleCardClick={handleCardClick} />
           {!loading && (
             <div className="cards-remaining">
