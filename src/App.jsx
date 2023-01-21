@@ -10,6 +10,7 @@ import customImages from "./components/CustomImages";
 import shuffleArray from "./utils/shuffleArray";
 import formatTime from "./utils/formatTime";
 import useGameTimer from "./hooks/useGameTimer";
+import useModal from "./hooks/useModal";
 import { GHIBLI_API_URL } from "./constants/api";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [selectedCards, setSelectedCards] = useState([]);
+  const modal = useModal();
   const [modalMessage, setModalMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -48,6 +50,7 @@ function App() {
   function handleCardClick(id) {
     if (selectedCards.includes(id)) {
       setModalMessage("Game Over! Try Again.");
+      modal.openModal();
       setScore(0);
       setSelectedCards([]);
     } else {
@@ -57,6 +60,7 @@ function App() {
       setSelectedCards([...selectedCards, id]);
       if (newScore === cards.length) {
         setModalMessage("Congratulations! You matched all the Ghibli films!");
+        modal.openModal();
       }
     }
     setCards(shuffleArray(cards));
@@ -64,6 +68,7 @@ function App() {
 
   function handleModalClose() {
     setModalMessage("");
+    modal.closeModal();
     setScore(0);
     setSelectedCards([]);
     setGameTime(0); // Reset game time
@@ -90,7 +95,7 @@ function App() {
               Cards remaining: {cards.length - score}
             </div>
           )}
-          {modalMessage && (
+          {modal.isOpen && (
             <Modal message={modalMessage} onClose={handleModalClose} gameTime={formatTime(gameTime)} />
           )}
         </>
