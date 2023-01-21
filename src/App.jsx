@@ -56,7 +56,7 @@ function App() {
       setBestScore(Math.max(newScore, bestScore));
       setSelectedCards([...selectedCards, id]);
       if (newScore === cards.length) {
-        setModalMessage("You Won!");
+        setModalMessage("Congratulations! You matched all the Ghibli films!");
       }
     }
     setCards(shuffleArray(cards));
