@@ -91,7 +91,7 @@ function App() {
             </div>
           )}
           {modalMessage && (
-            <Modal message={modalMessage} onClose={handleModalClose} />
+            <Modal message={modalMessage} onClose={handleModalClose} gameTime={formatTime(gameTime)} />
           )}
         </>
       )}
