@@ -13,6 +13,9 @@ import formatTime from "./utils/formatTime";
 import useGameTimer from "./hooks/useGameTimer";
 import useModal from "./hooks/useModal";
 import { GHIBLI_API_URL } from "./constants/api";
+import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
+import NavBar from "./components/common/NavBar";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -78,22 +81,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Ghibli_logo.svg" alt="Ghibli Logo" className="logo" />
-        <h1>Totoro Memory Game</h1>
-        <div className="difficulty-selector">
-          <label htmlFor="difficulty">Difficulty: </label>
-          <select
-            id="difficulty"
-            value={difficulty}
-            onChange={e => setDifficulty(Number(e.target.value))}
-          >
-            <option value={6}>Easy (6 cards)</option>
-            <option value={12}>Medium (12 cards)</option>
-            <option value={18}>Hard (18 cards)</option>
-          </select>
-        </div>
-      </header>
+      <Header />
+      <NavBar />
       {error && <div className="error-message">{error}</div>}
       {loading ? (
         <div>
@@ -115,6 +104,7 @@ function App() {
           )}
         </>
       )}
+      <Footer />
     </div>
   );
 }
