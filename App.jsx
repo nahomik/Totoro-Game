@@ -93,6 +93,16 @@ useEffect(() => {
             <span>Difficulty: {Object.keys(customImages).length} cards</span>
           </div>
   
+          <div className="progress-container">
+            <div className="progress-bar">
+              <div 
+                className="progress-fill" 
+                style={{ width: `${(score / Object.keys(customImages).length) * 100}%` }}
+              ></div>
+            </div>
+            <span className="progress-text">{score}/{Object.keys(customImages).length}</span>
+          </div>
+  
           <Scoreboard score={score} bestScore={bestScore} />
           <CardGrid cards={cards} handleCardClick={handleCardClick} />
           {modalMessage && (
