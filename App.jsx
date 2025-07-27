@@ -14,6 +14,7 @@ function App() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [modalMessage, setModalMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [gameTime, setGameTime] = useState(0);
 
 useEffect(() => {
   const timer = setTimeout(() => {
